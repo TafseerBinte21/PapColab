@@ -1,0 +1,2 @@
+# PapColab
+PapColab is more than simply a website; it's a pivotal center where researchers from various fields can easily converge, communicate, and work together to further our understanding of the world. Our goal is to create a global network using the modern AI technology for the scholars so that they will be able to cut through academic boundaries and geographical boundaries, enabling them to collaborate on projects with the potential to redefine the face of academia and other fields.
