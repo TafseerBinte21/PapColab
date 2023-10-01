@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"
+        ></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <link th:href="@{/css/shop.css}" rel="stylesheet" />
+        <link th:href="@{/css/main.css}" rel="stylesheet" />
+        <title>Profile</title>
+    </head>
+
+    <body>
+        <div class="topnav">
+            <a href="/">Home</a>
+            <a href="/user/feed">Feed</a>
+            <a href="#contact">Contact</a>
+            <a href="#about">About</a>
+
+            <div class="wrap">
+                <form
+                    class="search"
+                    th:action="@{/search/}"
+                    th:object="${post}"
+                    method="post"
+                >
+                    <input
+                        type="text"
+                        class="searchTerm"
+                        placeholder="Search Post..."
+                        name="game"
+                    />
+                    <button type="submit" class="searchButton">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="wrap_profile">
+                <form
+                    class="profile"
+                    th:action="@{/user/profile/{id}(id = ${user.id})}"
+                >
+                    <button type="submit" class="profileButton">
+                        <i class="fa fa-user"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="wrap_logout">
+                <form class="logout" th:action="@{/user/logout}" method="post">
+                    <button type="submit" class="logoutButton">
+                        <i class="fa fa-sign-out"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="products">
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="row col-xl-12 col-lg-12 col-md-12">
+                        <div class="col-xl-3 col-lg-3 col-md-3">
+                            <div class="product_name profile_details">
+                                <h3>Name</h3>
+                            </div>
+                        </div>
+                        <div class="col-xl-9 col-lg-9 col-md-9">
+                            <div class="product_name profile_details mr-auto">
+                                <h3 th:text="@{${researcher.name}}"></h3>
+                            </div>
+                        </div>
+                        <div
+                            class="col-xl-3 col-lg-3 col-md-3"
+                            th:if="${user.id == researcher.id}"
+                        >
+                            <div class="product_name profile_details">
+                                <h3>Email</h3>
+                            </div>
+                        </div>
+                        <div
+                            class="col-xl-9 col-lg-9 col-md-9"
+                            th:if="${user.id == researcher.id}"
+                        >
+                            <div class="product_name profile_details mr-auto">
+                                <h3 th:text="@{${user.email}}"></h3>
+                            </div>
+                        </div>
+                        <div
+                            class="col-xl-3 col-lg-3 col-md-3"
+                            th:if="${user.id == researcher.id}"
+                        >
+                            <div class="product_name profile_details">
+                                <h3>Phone</h3>
+                            </div>
+                        </div>
+                        <div
+                            class="col-xl-9 col-lg-9 col-md-9"
+                            th:if="${user.id == researcher.id}"
+                        >
+                            <div class="product_name profile_details mr-auto">
+                                <h3 th:text="@{${user.phone}}"></h3>
+                            </div>
+                        </div>
+                        <div
+                            class="col-xl-3 col-lg-3 col-md-3"
+                            th:if="${user.id == researcher.id}"
+                        >
+                            <div class="product_name profile_details">
+                                <h3>Address</h3>
+                            </div>
+                        </div>
+                        <div
+                            class="col-xl-9 col-lg-9 col-md-9"
+                            th:if="${user.id == researcher.id}"
+                        >
+                            <div class="product_name profile_details mr-auto">
+                                <h3 th:text="@{${user.address}}"></h3>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-3">
+                            <div class="product_name profile_details">
+                                <h3>Interest</h3>
+                            </div>
+                        </div>
+                        <div class="col-xl-9 col-lg-9 col-md-9">
+                            <div class="product_name profile_details mr-auto">
+                                <h3 th:text="@{${researcher.interest}}"></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-5">
+                    <div
+                        class="row col-xl-3 col-lg-3 col-md-3"
+                        th:if="${user.id == researcher.id}"
+                    >
+                        <button
+                            class="login-button"
+                            type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#collaborationsModal"
+                        >
+                            Collaborations
+                        </button>
+                        <div
+                            class="modal fade"
+                            id="collaborationsModal"
+                            tabindex="-1"
+                            aria-labelledby="exampleModalLabel"
+                            aria-hidden="true"
+                        >
+                            <div
+                                class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"
+                            >
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1
+                                            class="modal-title fs-5"
+                                            id="exampleModalLabel"
+                                        >
+                                            Collaborations
+                                        </h1>
+                                        <button
+                                            type="button"
+                                            class="btn-close"
+                                            data-bs-dismiss="modal"
+                                            aria-label="Close"
+                                        ></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div
+                                            class="row"
+                                            th:each="collab: ${collaborations}"
+                                        >
+                                            <div class="col-sm-4 mb-3 mb-sm-0">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <a
+                                                            th:href="@{/user/profile/{id}(id = ${collab.id})}"
+                                                        >
+                                                            <h5
+                                                                class="card-title"
+                                                                th:text="@{${collab.name}}"
+                                                            ></h5
+                                                        ></a>
+                                                        <form
+                                                            th:action="@{/user/collaborate/disconnect/{id}(id = ${collab.id})}"
+                                                            method="post"
+                                                        >
+                                                            <button
+                                                                class="btn btn-danger mt-3"
+                                                                type="submit"
+                                                            >
+                                                                Disconnect
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="row col-xl-3 col-lg-3 col-md-3"
+                        th:if="${user.id == researcher.id}"
+                    >
+                        <button
+                            class="login-button"
+                            type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#viewRequestsModal"
+                        >
+                            View Requests
+                        </button>
+                        <div
+                            class="modal fade"
+                            id="viewRequestsModal"
+                            tabindex="-1"
+                            aria-labelledby="exampleModalLabel"
+                            aria-hidden="true"
+                        >
+                            <div
+                                class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                            >
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1
+                                            class="modal-title fs-5"
+                                            id="exampleModalLabel"
+                                        >
+                                            Collaboration Requests
+                                        </h1>
+                                        <button
+                                            type="button"
+                                            class="btn-close"
+                                            data-bs-dismiss="modal"
+                                            aria-label="Close"
+                                        ></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div
+                                            class="row"
+                                            th:each="recRequest: ${receivedRequests}"
+                                        >
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <a
+                                                            th:href="@{/user/profile/{id}(id = ${recRequest.id})}"
+                                                        >
+                                                            <h5
+                                                                class="card-title"
+                                                                th:text="@{${recRequest.name}}"
+                                                            ></h5
+                                                        ></a>
+                                                        <form
+                                                            th:action="@{/user/collaborate/accept/{id}(id = ${recRequest.id})}"
+                                                            method="post"
+                                                        >
+                                                            <button
+                                                                class="btn btn-success"
+                                                                type="submit"
+                                                            >
+                                                                Accept
+                                                            </button>
+                                                        </form>
+                                                        <form
+                                                            th:action="@{/user/collaborate/reject/{id}(id = ${recRequest.id})}"
+                                                            method="post"
+                                                        >
+                                                            <button
+                                                                class="btn btn-danger"
+                                                                type="submit"
+                                                            >
+                                                                Reject
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="row col-xl-3 col-lg-3 col-md-3"
+                        th:if="${user.id == researcher.id}"
+                    >
+                        <button
+                            class="login-button"
+                            type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#sentRequestsModal"
+                        >
+                            Sent Requests
+                        </button>
+                        <div
+                            class="modal fade"
+                            id="sentRequestsModal"
+                            tabindex="-1"
+                            aria-labelledby="exampleModalLabel"
+                            aria-hidden="true"
+                        >
+                            <div
+                                class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                            >
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1
+                                            class="modal-title fs-5"
+                                            id="exampleModalLabel"
+                                        >
+                                            Sent Requests
+                                        </h1>
+                                        <button
+                                            type="button"
+                                            class="btn-close"
+                                            data-bs-dismiss="modal"
+                                            aria-label="Close"
+                                        ></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div
+                                            class="row"
+                                            th:each="sentRequest: ${sentRequests}"
+                                        >
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <a
+                                                            th:href="@{/user/profile/{id}(id = ${sentRequest.id})}"
+                                                        >
+                                                            <h5
+                                                                class="card-title"
+                                                                th:text="@{${sentRequest.name}}"
+                                                            ></h5
+                                                        ></a>
+                                                        <form
+                                                            th:action="@{/user/collaborate/cancel/{id}(id = ${sentRequest.id})}"
+                                                            method="post"
+                                                        >
+                                                            <button
+                                                                class="btn btn-secondary"
+                                                                type="submit"
+                                                            >
+                                                                Cancel
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="row col-xl-3 col-lg-3 col-md-3"
+                        th:if="${user.id != researcher.id}"
+                    >
+                        <form
+                            th:action="@{/user/collaborate/{id}(id = ${researcher.id})}"
+                            method="post"
+                            th:if="${!hasSentRequest} and ${!isCollaborator} and ${!hasReceivedRequest}"
+                        >
+                            <button class="btn btn-success" type="submit">
+                                Collaborate
+                            </button>
+                        </form>
+                        <form
+                            th:action="@{/user/collaborate/disconnect/{id}(id = ${researcher.id})}"
+                            method="post"
+                            th:if="${isCollaborator}"
+                        >
+                            <button class="btn btn-danger" type="submit">
+                                Disconnect
+                            </button>
+                        </form>
+                        <form
+                            th:action="@{/user/collaborate/cancel/{id}(id = ${researcher.id})}"
+                            method="post"
+                            th:if="${hasSentRequest} and ${!isCollaborator}"
+                        >
+                            <button class="btn btn-secondary" type="submit">
+                                Cancel Request
+                            </button>
+                        </form>
+                        <form
+                            th:action="@{/user/collaborate/accept/{id}(id = ${researcher.id})}"
+                            method="post"
+                            th:if="${hasReceivedRequest} and ${!isCollaborator}"
+                        >
+                            <button class="btn btn-success" type="submit">
+                                Accept
+                            </button>
+                        </form>
+                        <form
+                            th:action="@{/user/collaborate/reject/{id}(id = ${researcher.id})}"
+                            method="post"
+                            th:if="${hasReceivedRequest} and ${!isCollaborator}"
+                        >
+                            <button class="btn btn-danger" type="submit">
+                                Reject
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <form
+                    class="mb-5"
+                    method="post"
+                    th:action="@{/user/userfeed}"
+                    th:if="${user.id == researcher.id}"
+                >
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="title"
+                            name="title"
+                            placeholder="title..."
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label"
+                            >Description</label
+                        >
+                        <textarea
+                            class="form-control"
+                            id="description"
+                            name="description"
+                            rows="3"
+                        ></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Create Post
+                    </button>
+                </form>
+                <div class="card mb-5" th:each="post: ${posts}">
+                    <div class="card-header">
+                        <a
+                            th:href="@{/user/profile/{id}(id = ${post.user.id})}"
+                            th:text="@{${post.user.name}}"
+                        ></a>
+                        <a
+                            class="btn btn-danger float-end"
+                            th:href="@{/user/post/delete/{id}(id=${post.id})}"
+                            method="post"
+                            th:if="${user.id == post.user.id}"
+                            ><i class="fa fa-minus-circle"></i
+                        ></a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="@{${post.title}}"></h5>
+                        <p
+                            class="card-text"
+                            th:text="@{${post.description}}"
+                        ></p>
+                    </div>
+                    <div class="card-footer text-body-secondary">
+                        <a th:href="@{/user/post/{id}(id = ${post.id})}">
+                            <button
+                                type="submit"
+                                class="btn btn-outline-secondary"
+                            >
+                                Comments
+                            </button>
+                        </a>
+                        <form
+                            class="float-end"
+                            method="post"
+                            th:action="@{/user/post/statistics/{postId}(postId = ${post.id})}"
+                        >
+                            <button
+                                type="submit"
+                                class="btn btn-outline-primary"
+                            >
+                                Statistics
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

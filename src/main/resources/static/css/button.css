@@ -1,0 +1,56 @@
+
+body {
+
+    .button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #d6e2ee; /* Button color */
+    color: #000000; /* Text color */
+    text-decoration: none; /* Remove underline */
+    border: none; /* Remove border */
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Style for hover effect */
+.button-link:hover {
+    background-color: #94bce6; /* Darker button color on hover */
+}
+
+
+  /* Styles for the overlay (to dim the background) */
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    z-index: 1;
+}
+
+/* Style for the pop-up container */
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 2;
+}
+
+/* Styles for the image and text within the pop-up */
+.popup-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.popup-text {
+    margin-top: 10px;
+}
+
+}

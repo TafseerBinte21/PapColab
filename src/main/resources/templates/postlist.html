@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+    <title>Admin Post List</title>
+</head>
+<body>
+    
+
+    <div class="topnav">
+        <a class="active" href="/">Home</a>
+        <a href="/adminfeed">Feed</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+      </div>
+  
+    <div class="wrap_profile">
+        <form class="profile" th:action="@{/admin/postlist}">
+         
+        </form>
+      </div>
+
+    <p>Total Posts: <span th:text="${totalPosts}"></span></p>
+    <table>
+        <tr>
+            <th>Post ID</th>
+            <!-- <th>User ID</th> -->
+            <th>Post Title</th>
+        </tr>
+        <tr th:each="post : ${posts}">
+            <td th:text="${post.id}"></td>
+            <td th:text="${post.title}"></td>
+        </tr>
+    </table>
+</body>
+</html>

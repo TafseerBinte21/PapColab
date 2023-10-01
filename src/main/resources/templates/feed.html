@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"
+        ></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <link th:href="@{/css/shop.css}" rel="stylesheet" />
+        <link th:href="@{/css/feed.css}" rel="stylesheet" />
+        <link th:href="@{/css/button.css}" rel="stylesheet" />
+        <title>Feed</title>
+    </head>
+
+    <body>
+    
+        <div class="topnav">
+            <a href="/">Home</a>
+            <a class="active" href="/user/feed">Feed</a>
+            <a href="#contact">Contact</a>
+            <a href="/about">About</a>
+
+            <div class="wrap">
+                <form
+                    class="search"
+                    th:action="@{/search/}"
+                    th:object="${post}"
+                    method="post"
+                >
+                    <input
+                        type="text"
+                        class="searchTerm"
+                        placeholder="Search Post..."
+                        name="post"
+                    />
+                    <button type="submit" class="searchButton">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="wrap_profile">
+                <form
+                    class="profile"
+                    th:action="@{/user/profile/{id}(id = ${user.id})}"
+                >
+                    <button type="submit" class="profileButton">
+                        <i class="fa fa-user"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="wrap_logout">
+                <form class="logout" th:action="@{/user/logout}" method="post">
+                    <button type="submit" class="logoutButton">
+                        <i class="fa fa-sign-out"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- SHOW ALL OF MY POSTS -->
+        <div class="products">
+            <div class="container">
+                <form class="mb-5" method="post" th:action="@{/user/userfeed}">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="title"
+                            name="title"
+                            placeholder="title..."
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label"
+                            >Description</label
+                        >
+                        <textarea
+                            class="form-control"
+                            id="description"
+                            name="description"
+                            rows="3"
+                        ></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Create Post
+                    </button>
+                </form>
+                <div class="card mb-5" th:each="post: ${posts}">
+                    <div class="card-header">
+                        <a
+                            th:href="@{/user/profile/{id}(id = ${post.user.id})}"
+                            th:text="@{${post.user.name}}"
+                        ></a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="@{${post.title}}"></h5>
+                        <p
+                            class="card-text"
+                            th:text="@{${post.description}}"
+                        ></p>
+                    </div>
+                    <div class="card-footer text-body-secondary">
+                        <a th:href="@{/user/post/{id}(id = ${post.id})}">
+                            <button
+                                type="submit"
+                                class="btn btn-outline-secondary"
+                            >
+                                Comments
+                            </button>
+                        </a>
+                        <!-- <form
+                            class="float-end"
+                            method="post"
+                            th:action="@{/user/post/statistics/{postId}(postId = ${post.id})}"
+                        >
+                            <button
+                                type="submit"
+                                class="btn btn-outline-primary"
+                            >
+                                Statistics
+                            </button>
+                        </form> -->
+                       
+                        <!-- <form
+                        class="float-end">
+                        <a href="/stat" class="button-link">Statistics</a>
+                        
+                    
+                        
+                        </form> -->
+                        <form class="float-end">
+                            <a href="javascript:void(0);" class="button-link" id="openPopup">Statistics</a>
+                            <!-- <a href="/stat" class="button-link" id="openPopup">Statistics</a> -->
+                        </form>
+                    
+                        <!-- The overlay and pop-up content -->
+                        <div class="overlay" id="overlay"></div>
+                        <div class="popup-container" id="popupContainer">
+                            
+                            <img th:src="@{/img/POST-MEHEDI.png}">
+                            <!-- <img class="popup-image" src="main.png" alt="Image"> -->
+                            <p class="popup-text"></p>
+                            <button id="closePopup">Close</button>
+                        </div>
+                    
+                        <script>
+                            // JavaScript to show and hide the pop-up
+                            const openButton = document.getElementById("openPopup");
+                            const closeButton = document.getElementById("closePopup");
+                            const popupContainer = document.getElementById("popupContainer");
+                            const overlay = document.getElementById("overlay");
+                    
+                            openButton.addEventListener("click", function() {
+                                popupContainer.style.display = "block";
+                                overlay.style.display = "block";
+                            });
+                    
+                            closeButton.addEventListener("click", function() {
+                                popupContainer.style.display = "none";
+                                overlay.style.display = "none";
+                            });
+                        </script>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

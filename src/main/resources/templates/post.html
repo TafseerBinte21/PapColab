@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"
+        ></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <link th:href="@{/css/shop.css}" rel="stylesheet" />
+        <link th:href="@{/css/feed.css}" rel="stylesheet" />
+        <title>Post</title>
+    </head>
+
+    <body>
+        <div class="topnav">
+            <a href="/">Home</a>
+            <a class="active" href="/user/feed">Feed</a>
+            <a href="#contact">Contact</a>
+            <a href="/about">About</a>
+
+            <div class="wrap">
+                <form
+                    class="search"
+                    th:action="@{/search/}"
+                    th:object="${post}"
+                    method="post"
+                >
+                    <input
+                        type="text"
+                        class="searchTerm"
+                        placeholder="Search Post..."
+                        name="game"
+                    />
+                    <button type="submit" class="searchButton">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="wrap_profile">
+                <form
+                    class="profile"
+                    th:action="@{/user/profile/{id}(id = ${user.id})}"
+                >
+                    <button type="submit" class="profileButton">
+                        <i class="fa fa-user"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="wrap_logout">
+                <form class="logout" th:action="@{/user/logout}" method="post">
+                    <button type="submit" class="logoutButton">
+                        <i class="fa fa-sign-out"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- SHOW ALL OF MY POSTS -->
+        <div class="products">
+            <div class="container">
+                <div class="card mb-5">
+                    <div class="card-header">
+                        <a
+                            th:href="@{/user/profile/{id}(id = ${post.user.id})}"
+                            th:text="@{${post.user.name}}"
+                        ></a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="@{${post.title}}"></h5>
+                        <p
+                            class="card-text"
+                            th:text="@{${post.description}}"
+                        ></p>
+                    </div>
+                    <div class="card-footer text-body-secondary">
+                        <form
+                            class="mb-5"
+                            method="post"
+                            th:action="@{/user/post/{id}(id = ${post.id})}"
+                        >
+                            <div class="mb-3">
+                                <label for="comment" class="form-label"
+                                    >Comment</label
+                                >
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="comment"
+                                    name="comment"
+                                    placeholder="write a comment..."
+                                />
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                Add Comment
+                            </button>
+                        </form>
+                        <div class="card mb-5" th:each="comment: ${comments}">
+                            <div class="card-header">
+                                <a
+                                    th:href="@{/user/profile/{id}(id = ${comment.user.id})}"
+                                    th:text="@{${comment.user.name}}"
+                                ></a>
+                            </div>
+                            <div class="card-body">
+                                <p
+                                    class="card-text"
+                                    th:text="@{${comment.comment}}"
+                                ></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

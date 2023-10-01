@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+    <title>Admin User List</title>
+</head>
+<body>
+    <div class="topnav">
+        <a class="active" href="/">Home</a>
+        <a href="/adminfeed">Feed</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+      </div>
+  
+    <div class="wrap_profile">
+        <form class="profile" th:action="@{/admin/userlist}">
+         
+        </form>
+      </div>
+    <h1>Admin User List</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.email}"></td>
+
+
+            <td>
+                <form th:action="@{/admin/deleteUser/{userId}}" th:method="post">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                    <input type="hidden" th:name="userId" th:value="${user.id}" />
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

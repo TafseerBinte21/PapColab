@@ -1,0 +1,42 @@
+body {
+  background-color: rgb(255, 255, 255);
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: rgb(255, 121, 121);
+  color: black;
+}
+
+.topnav a.active {
+  background-color: rgb(164, 0, 0);
+  color: white;
+}
+
+.register-form {
+  padding-top: 50px;
+}
+
+.register-form span,
+.login-form span {
+  color: #0e0000;
+}
+
+.form-group {
+  text-align: center;
+}

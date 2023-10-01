@@ -1,0 +1,190 @@
+body {
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .topnav {
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .topnav a:hover {
+    background-color: rgb(255, 121, 121);
+    color: black;
+  }
+  
+  .topnav a.active {
+    background-color: rgb(164, 0, 0);
+    color: white;
+  }
+  
+  .home h1 {
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 60px;
+  }
+  
+  .home img {
+    width: 100%;
+  }
+  
+  .home-text {
+    text-align: center;
+    color: rgb(255, 121, 121);
+    font-size: 25px;
+    padding-top: 45px;
+  }
+  
+  .login-register {
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .login-register a {
+    text-decoration: none;
+    background-color: rgb(0, 0, 0);
+    border-color: rgb(255, 255, 223);
+    color: rgb(255, 255, 223);
+    padding: 14px 28px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .login-register a:hover {
+    background: rgb(255, 121, 121);
+    color: rgb(0, 0, 0);
+  }
+  
+  .login-button {
+    background-color: rgb(0, 0, 0);
+    border-color: rgb(255, 255, 223);
+    color: rgb(255, 255, 223);
+    padding: 14px 28px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .login-button:hover {
+    background: rgb(255, 121, 121);
+    color: rgb(0, 0, 0);
+  }
+  
+  .search,
+  .logout,
+  .profile {
+    width: 100%;
+    position: relative;
+    display: flex;
+  }
+  
+  .searchTerm {
+    width: 100%;
+    border: 3px solid rgb(164, 0, 0);
+    border-right: none;
+    padding: 5px;
+    height: 20px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #9dbfaf;
+    box-sizing: revert !important;
+  }
+  
+  .searchTerm:focus {
+    color: rgb(164, 0, 0);
+  }
+  
+  .searchButton,
+  .logoutButton,
+  .profileButton {
+    width: 40px;
+    height: 36px;
+    border: 1px solid rgb(164, 0, 0);
+    background: rgb(164, 0, 0);
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  /*Resize the wrap to see the search bar change!*/
+  .wrap {
+    width: 20%;
+    position: absolute;
+    top: 4%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .wrap_logout {
+    /* width: 20%; */
+    position: absolute;
+    top: 4%;
+    left: 95%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .wrap_profile {
+    /* width: 20%; */
+    position: absolute;
+    top: 4%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  @media (min-width: 576px) {
+    .container {
+      max-width: 540px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .container {
+      max-width: 720px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .container {
+      max-width: 960px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 1140px;
+    }
+  }
+  
+  .table {
+    color: rgb(0, 0, 0);
+  }
+  
+  .thumbnail {
+    width: 50%;
+  }
+  
+  .img-thumbnail {
+    width: 25%;
+  }
+  

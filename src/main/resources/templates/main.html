@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+    <title>PapColab</title>
+  </head>
+
+  <body>
+    <div class="topnav">
+      <a class="active" href="/">Home</a>
+      <a href="/user/feed">Feed</a>
+      <a href="#contact">Contact</a>
+      <a href="#about">About</a>
+    </div>
+
+    <section class="home" id="home">
+     
+      <img th:src="@{/img/main.png}" alt="Image Description" width="50" height="630">
+
+    </section>
+    <h1 class="home-text">Your Global Research Collaboration Hub</h1>
+    
+    <div class="login-register">
+      <button class="login-button" onclick="document.location='register'">
+        Register
+      </button>
+      <button class="login-button" onclick="document.location='/user/login'">
+        Login
+      </button>
+         <button class="login-button" onclick="document.location='admin/login'">
+        Admin Login
+      </button>
+    </div>
+  </body>
+</html>

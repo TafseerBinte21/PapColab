@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Feed</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link th:href="@{/css/shop.css}" rel="stylesheet" />
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="topnav">
+        <a href="/">Home</a>
+        <a class="active" href="/userfeed">User Feed</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+        <div class="wrap">
+            <form class="search" th:action="@{/search/}" th:object="${crops}" method="post">
+                <input type="text" class="searchTerm" placeholder="Search post..." name="crop" />
+                <button type="submit" class="searchButton">
+                    <i class="fa fa-search"></i>
+                </button>
+            </form>
+        </div>
+        <div class="wrap_profile">
+            <form class="profile" th:action="@{/profile}">
+                <button type="submit" class="profileButton">
+                    <i class="fa fa-user"></i>
+                </button>
+            </form>
+        </div>
+        <div class="wrap_logout">
+            <form class="logout" th:action="@{/logout}" method="post">
+                <button type="submit" class="logoutButton">
+                    <i class="fa fa-sign-out"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="products">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3">
+                    <div class="section_title text-center">User Feed</div>
+                </div>
+            </div>
+            <div class="row products_row">
+                <!-- Loop through the list of user's posts and display them -->
+                <div class="col-xl-4 col-md-6" th:each="post : ${post}">
+                    <div class="product">
+                        <div class="product_content">
+                            <div class="product_info d-flex flex-row align-items-start justify-content-start">
+                                <div>
+                                    <div>
+                                        <div class="product_name">
+                                            <a th:href="@{'/post/'+${post.id}}" th:text="${post.title}"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ml-auto mt-auto mb-auto text-right">
+                                    <div class="product_price text-right">
+                                        <!-- Display additional information about the post if needed -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product_description">
+                                <p th:text="${post.description}"></p>
+                                <a
+                          th:href="@{'/post/'+${pPost.description}}"
+                          th:text="${pPost.description}"
+                        ></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Link to create a new post -->
+            <div class="row load_more_row">
+                <div class="col">
+                    <div class="load_more m-auto mr-auto">
+                        <button class="load_more-button" onclick="document.location='/create-post'">
+                            Create a New Post
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
